@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Video Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+      :root {
+    --primary-color: #8b5cf6;
+    --primary-dark: #6d28d9;
+    --text-light: #ffffff;
+    --text-dark: #1f2937;
+    --accent-color: #10b981;
+    --background-light: rgba(255, 255, 255, 0.95);
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+nav {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 4rem);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 16px;
+    color: var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.video-section {
+    background: var(--background-light);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.video-display {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background: #000;
+}
+
+.video-display iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-info {
+    padding: 1rem 0;
+}
+
+.video-info h3 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+}
+
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: var(--background-light);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 0.5rem;
+}
+
+.video-item img {
+    width: 100%;
+    max-width: 300px; /* Optional: Adjust this as needed */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-top: 0.5rem;
+}
+
+.video-item:hover {
+    background: rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+
+.video-item-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 0;
+}
+
+
+.delete-btn {
+    background: var(--danger);
+    color: var(--text-light);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.delete-btn:hover {
+    background: var(--danger-hover);
+}
+
+@media (max-width: 768px) {
+    .video-item {
+        padding: 0.75rem;
+    }
+    
+    .video-item img {
+        width: 100px;
+        height: 56px;
+    }
+    
+    .delete-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+.upload-section {
+    background: var(--background-light);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.upload-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    font-size: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--text-light);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* Scrollbar Styling */
+.video-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.video-list::-webkit-scrollbar-track {
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 4px;
+}
+
+.video-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.video-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-list {
+        max-height: 60vh;
+    }
+    
+    .video-item {
+        grid-template-columns: 100px 1fr auto;
+    }
+    
+    .video-item img {
+        width: 100px;
+        height: 56px;
+    }
+    
+    nav {
+        padding: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav a {
+        font-size: 12px;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+}
+       
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/home/"><i class="fas fa-home"></i> Home</a>
+        <a href="/link/"><i class="fas fa-link"></i> Links</a>
+        <a href="/history/"><i class="fas fa-history"></i> History</a>
+        <a href="/videos/"><i class="fas fa-video"></i> Videos</a>
+        <a href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Educational Video Platform</h1>
+            <p>Access your course materials and lectures</p>
+        </div>
+        <div class="content-session">
+        <div class="content-wrapper">
+            <div class="video-section">
+                <div class="video-display">
+                    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 id="currentVideoTitle">Select a video to start watching</h3>
+                </div>
+            </div>
+
+            <div class="video-list">
+                <h2>Course Videos</h2>
+                {% for video in videos %}
+                <div class="video-item" onclick="loadVideo('{{ video.video_link }}', '{{ video.subject }}')">
+                    
+                    <img src="{{ video.thumbnail }}" alt="{{ video.subject }}">
+               
+                    <div class="video-item-info">
+                        <div class="video-title">{{ video.subject }}</div>
+                    </div>
+                    <button class="delete-btn" onclick="deleteVideo('{{ video.video_link }}')">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>   
+                {% endfor %}
+                    
+        </div>
+    </div>
+
+        <div class="upload-section">
+            <h2>Upload New Video</h2>
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="subject">Subject Name</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Enter subject name">
+                </div>
+                <div class="form-group">
+                    <label for="video_link">YouTube Video Link</label>
+                    <input type="url" id="video_link" name="video_link" required placeholder="Enter YouTube video URL">
+                </div>
+                <button type="submit" class="button">
+                    <i class="fas fa-upload"></i> Upload Video
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function loadVideo(videoLink, title) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('currentVideoTitle');
+    
+            // Extract YouTube video ID from the link
+            let videoId;
+            if (videoLink.includes('watch?v=')) {
+                videoId = videoLink.split('watch?v=')[1].split('&')[0];
+            } else if (videoLink.includes('youtu.be/')) {
+                videoId = videoLink.split('youtu.be/')[1].split('?')[0];
+            } else if (videoLink.includes('/embed/')) {
+                videoId = videoLink.split('/embed/')[1].split('?')[0];
+            }
+    
+            // Update the iframe with the extracted video ID
+            if (videoId) {
+                videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+                videoTitle.textContent = title; // Update the video title
+            } else {
+                alert('Invalid YouTube video link');
+            }
+        }
+    
+        async function handleUpload(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+    
+            try {
+                const response = await fetch('{% url "videos" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                });
+    
+                const data = await response.json();
+                if (data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert('Upload failed: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Upload error: ' + error.message);
+            }
+        }
+    
+        async function deleteVideo(videoLink) {
+            if (!confirm('Are you sure you want to delete this video?')) {
+                return;
+            }
+    
+            try {
+                const response = await fetch('{% url "videos" %}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({ video_link: videoLink })
+                });
+    
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    const data = await response.json();
+                    alert('Delete failed: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Delete error: ' + error.message);
+            }
+        }
+    </script>
+    
+</body>
+</html>

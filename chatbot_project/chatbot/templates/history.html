@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8b5cf6;
+            --primary-dark: #6d28d9;
+            --text-light: #ffffff;
+            --text-dark: #1f2937;
+            --accent-color: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-light);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: var(--text-dark);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chat-history {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .history-entry {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .query-section {
+            margin-bottom: 15px;
+        }
+
+        .query-section strong {
+            color: var(--primary-color);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .response-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .response-section strong {
+            color: var(--primary-dark);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .score {
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 6px;
+        }
+
+        .empty-history {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/home/"><i class="fas fa-home"></i> Home</a>
+        <a href="/link/"><i class="fas fa-link"></i> Links</a>
+        <a href="/history/"><i class="fas fa-history"></i> History</a>
+        <a href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="/videos/"><i class="fas fa-video"></i> Videos</a>
+    </nav>
+    <div class="container">
+        <h1><i class="fas fa-history"></i> Learning History</h1>
+        <div class="chat-history">
+            {% for entry in history %}
+                <div class="history-entry">
+                    <div class="query-section">
+                        <strong><i class="fas fa-question-circle"></i> Query</strong>
+                        <p>{{ entry.query }}</p>
+                    </div>
+                    <div class="response-section">
+                        <strong><i class="fas fa-robot"></i> Response</strong>
+                        <p>{{ entry.response }}</p>
+                        <div class="score">
+                            <i class="fas fa-star"></i> Score: {{ entry.score }}/5
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-history">
+                    <i class="fas fa-inbox fa-2x"></i>
+                    <p>No history available yet. Start a conversation to see your learning journey!</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

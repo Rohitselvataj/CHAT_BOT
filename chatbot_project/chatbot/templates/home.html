@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EduConnect Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .violet-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .glass-effect {
+            background: rgba(254, 254, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-image {
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .feature-card {
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <!-- Background Image -->
+    <div class="bg-image"></div>
+    
+    <!-- Navigation -->
+    <nav class="violet-gradient shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/home" class="text-white text-2xl font-bold animate__animated animate__fadeIn">
+                        <i class="fas fa-robot mr-2"></i>EduConnect
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    
+                    <a href="/logout" class="bg-white text-violet-600 px-6 py-2 rounded-full text-sm font-medium hover:bg-violet-50 transform hover:scale-105 transition-all">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="text-center py-12">
+        <h1 class="text-4xl font-bold text-white mb-4 animate__animated animate__fadeIn">Welcome to EduConnect</h1>
+        <p class="text-xl text-white opacity-90 animate__animated animate__fadeIn animate__delay-1s">Choose an option to get started</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <!-- Chat Box -->
+            <div class="glass-effect feature-card rounded-xl p-8 text-center animate__animated animate__fadeInUp">
+                <i class="fas fa-comments text-violet-600 text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold text-violet-800 mb-4">Chat</h3>
+                <p class="text-violet-600 mb-6">Talk and learn with the chatbot</p>
+                <a href="/chat" class="violet-gradient text-white px-8 py-3 rounded-lg inline-block hover:opacity-90 transition-all transform hover:scale-105">
+                    Start Chatting
+                </a>
+            </div>
+
+            <!-- Links Box -->
+            <div class="glass-effect feature-card rounded-xl p-8 text-center animate__animated animate__fadeInUp animate__delay-1s">
+                <i class="fas fa-link text-violet-600 text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold text-violet-800 mb-4">Links</h3>
+                <p class="text-violet-600 mb-6">Access important resources and educational materials</p>
+                <a href="/link" class="violet-gradient text-white px-8 py-3 rounded-lg inline-block hover:opacity-90 transition-all transform hover:scale-105">
+                    View Links
+                </a>
+            </div>
+
+            <!-- History Box -->
+            <div class="glass-effect feature-card rounded-xl p-8 text-center animate__animated animate__fadeInUp animate__delay-2s">
+                <i class="fas fa-history text-violet-600 text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold text-violet-800 mb-4">History</h3>
+                <p class="text-violet-600 mb-6">Review your past activities and learning progress</p>
+                <a href="/history" class="violet-gradient text-white px-8 py-3 rounded-lg inline-block hover:opacity-90 transition-all transform hover:scale-105">
+                    View History
+                </a>
+            </div>
+            <div class="glass-effect feature-card rounded-xl p-8 text-center animate__animated animate__fadeInUp animate__delay-3s">
+                <i class="fas fa-video text-violet-600 text-5xl mb-6"></i> 
+                <h3 class="text-2xl font-bold text-violet-800 mb-4">Video</h3>
+                <p class="text-violet-600 mb-6">Explore and analyze recorded video content for tracking</p>
+                <a href="/videos" class="violet-gradient text-white px-8 py-3 rounded-lg inline-block hover:opacity-90 transition-all transform hover:scale-105">
+                    View Video
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-white mt-12">
+        <p>&copy; 2025 EduConnect. All rights reserved.</p>
+    </footer>
+</body>
+</html>

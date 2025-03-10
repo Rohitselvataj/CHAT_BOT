@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EduConnect Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .violet-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .glass-effect {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(252, 251, 251, 0.1);
+        }
+
+        .bg-image {
+            background-image: url('https://plus.unsplash.com/premium_photo-1720600336435-a0d783ecdab7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        .form-input {
+            background: rgba(250, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <!-- Background Image -->
+    <div class="bg-image"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="violet-gradient shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/home" class="text-white text-2xl font-bold animate__animated animate__fadeIn">
+                        <i class="fas fa-robot mr-2"></i>EduConnect
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/register" class="bg-white text-violet-600 px-6 py-2 rounded-full text-sm font-medium hover:bg-violet-50 transform hover:scale-105 transition-all">
+                        <i class="fas fa-user-plus mr-2"></i>Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-md mx-auto glass-effect rounded-xl p-8 animate__animated animate__fadeIn">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Login</h2>
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                <div>
+                    <label class="block text-white mb-2">Email</label>
+                    <input type="email" name="email" required 
+                           class="form-input w-full px-4 py-3 rounded-lg" 
+                           placeholder="Enter your email">
+                </div>
+                <div>
+                    <label class="block text-white mb-2">Password</label>
+                    <input type="password" name="password" required 
+                           class="form-input w-full px-4 py-3 rounded-lg" 
+                           placeholder="Enter your password">
+                </div>
+                <button type="submit" 
+                        class="w-full violet-gradient text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
+                    Login
+                </button>
+            </form>
+            <p class="mt-6 text-center text-white">
+                Don't have an account? 
+                <a href="/register" class="font-medium text-violet-800 hover:underline">Register here</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
