@@ -1,5 +1,5 @@
 from wsgiref.handlers import SimpleHandler
-from CHAT_BOT.wsgi import application
+from chatbot_project.wsgi import application
 from io import BytesIO
 
 def handler(request, response):
