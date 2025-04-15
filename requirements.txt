@@ -113,13 +113,11 @@ pymango==0.1.1
 pymongo==4.10.1
 pyparsing==3.2.1
 pyphen==0.17.0
-pypiwin32==223
 python-dateutil==2.9.0.post0
 python-decouple==3.8
 python-dotenv==1.0.1
 pyttsx3==2.98
 pytz==2024.2
-pywin32==308
 PyYAML==6.0.2
 regex==2024.11.6
 requests==2.32.3
