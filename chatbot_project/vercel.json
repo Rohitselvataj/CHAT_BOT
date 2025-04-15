@@ -1,13 +1,11 @@
 {
-    "builds": [{
-        "src": "chatbot_project/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.13.1" }
-    }],
+    "functions": {
+      "api/index.py": {
+        "runtime": "python3.9"
+      }
+    },
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "chatbot_project/wsgi.py"
-        }
+      { "src": "/.*", "dest": "api/index.py" }
     ]
-}
+  }
+  
